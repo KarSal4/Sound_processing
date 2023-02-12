@@ -13,26 +13,28 @@ plt.plot(noise_data)
 plt.title("Шум")
 plt.show()
 
-playsound('Noise.wav')
+# playsound('Noise.wav')
 
-noise_data = np.int16(noise_data*10)
+noise_data = np.int16(noise_data*100)
 
 plt.plot(noise_data)
 plt.title("Шум")
 plt.show()
 
-write("Shum.wav", samplerate, noise_data)
-playsound('Shum.wav') 
+# write("Shum.wav", samplerate, noise_data)
+# playsound('Shum.wav') 
 
-samplerate, data = read('betkhoven-k-jelize.wav')
+samplerate, data = read('classified.wav')
 length = data.shape[0]  
 
 plt.plot(data)
-plt.title("Запись с шумом")
+plt.title("Зашифрованный сигнал")
 plt.show()
 
-playsound('betkhoven-k-jelize.wav')
+playsound('classified.wav')
 print(data)
+
+data = np.int16(data*100)
 
 # Быстроое преобразование Фурье 
 
@@ -47,7 +49,7 @@ yf = rfft(data)
 xf = rfftfreq(length, 1/samplerate)
 
 plt.plot(xf, np.abs(yf))
-plt.title("Спектр частот записи")
+plt.title("Спектр частот полезного сигнала")
 plt.show()
 
 print(len(noise_xf))
@@ -57,7 +59,7 @@ for i in range(len(xf)):
     yf[i] = yf[i] - noise_yf[i]
     
 plt.plot(xf, np.abs(yf))
-plt.title("Спектр частот записи с вырезанными шумами")
+plt.title("Спектр частот очищенногй записи")
 plt.show()
 
 new_sig = irfft(yf)
@@ -68,5 +70,5 @@ plt.show()
 
 norm_new_sig = np.int16(new_sig * (3000 / new_sig.max()))
 
-write("clean.wav", samplerate, norm_new_sig)
-playsound('clean.wav')
+write("New.wav", samplerate, norm_new_sig)
+playsound('New.wav')
