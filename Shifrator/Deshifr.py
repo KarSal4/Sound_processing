@@ -1,9 +1,11 @@
+
+# дешифровка
+
 import numpy as np
 from matplotlib import pyplot as plt
 from playsound import playsound
 from scipy.fft import *
 from scipy.io.wavfile import write, read
-
 
 
 samplerate, noise_data = read('Noise.wav')
@@ -24,17 +26,17 @@ plt.show()
 # write("Shum.wav", samplerate, noise_data)
 # playsound('Shum.wav') 
 
-samplerate, data = read('classified.wav')
-length = data.shape[0]  
+data = np.load('SecretSignal.npy')
+length = noise_length
 
 plt.plot(data)
 plt.title("Зашифрованный сигнал")
 plt.show()
 
-playsound('classified.wav')
-print(data)
+received_signal = np.int16( data * (3000 / data.max()))
 
-data = np.int16(data*100)
+write("received.wav", samplerate, received_signal)
+playsound('received.wav')
 
 # Быстроое преобразование Фурье 
 
