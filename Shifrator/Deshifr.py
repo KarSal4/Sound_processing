@@ -51,7 +51,7 @@ yf = rfft(data)
 xf = rfftfreq(length, 1/samplerate)
 
 plt.plot(xf, np.abs(yf))
-plt.title("Спектр частот полезного сигнала")
+plt.title("Спектр частот переданного сигнала")
 plt.show()
 
 print(len(noise_xf))
