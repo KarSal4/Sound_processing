@@ -48,6 +48,7 @@ print(noise_xf)
 print(xf)
 print(noise_yf)
 
+# интерполяция
 new_noise = np.interp(fftshift(xf), fftshift(noise_xf) , fftshift(noise_yf))
 noise_yf = fftshift(new_noise)
 print(noise_yf)
