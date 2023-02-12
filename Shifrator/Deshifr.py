@@ -1,7 +1,7 @@
 
 # дешифровка
 
-import numpy as np
+import numpy as 
 from matplotlib import pyplot as plt
 from playsound import playsound
 from scipy.fft import *
