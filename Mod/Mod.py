@@ -5,14 +5,14 @@ from scipy.fft import *
 from scipy.io.wavfile import write, read
 
 
-samplerate, data = read('clean.wav')
+samplerate, data = read('record.wav')
 length = data.shape[0]
 
 plt.plot(data)
 plt.title("Запись")
 plt.show()
 
-playsound('clean.wav')
+playsound('record.wav')
 
 # число точек в normalized_tone
 
@@ -37,7 +37,7 @@ plt.show()
 
 new_sig = irfft(yf)
 
-plt.plot(new_sig[:1000])
+plt.plot(new_sig)
 plt.show()
 
 
