@@ -20,23 +20,30 @@ xf = rfftfreq(length, 1/samplerate)
 plt.plot(xf, np.abs(yf))
 plt.show()
 
-print('Вверх или вниз?')
+flag = True
 
-a = input()
+while(flag):
 
-if a == 'вверх':
-    for i in range(len(yf)):
-        if i < len(yf)-1000:
-            yf[-i-1] = yf[-i-1000]
-        else:
-            yf[-i-1] = 0
+    print('вверх или вниз?')
 
-if a == 'вниз':
-    for i in range(len(yf)):
-        if i > len(yf)-500:
-            yf[i] = 0
-        else:
-            yf[i] =  yf[i+499]
+    a = input()
+
+    if a == 'вверх':
+        for i in range(len(yf)):
+            if i < len(yf)-1000:
+                yf[-i-1] = yf[-i-1000]
+            else:
+                yf[-i-1] = 0
+        flag = False
+
+    elif a == 'вниз':
+        for i in range(len(yf)):
+            if i > len(yf)-500:
+                yf[i] = 0
+            else:
+                yf[i] =  yf[i+499]
+        flag = False
+    
 
 
 plt.plot(xf, np.abs(yf))
