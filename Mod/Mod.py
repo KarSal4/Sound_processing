@@ -14,22 +14,29 @@ plt.show()
 
 playsound('record.wav')
 
-# число точек в normalized_tone
-
-
 yf = rfft(data)
 xf = rfftfreq(length, 1/samplerate)
 
 plt.plot(xf, np.abs(yf))
 plt.show()
 
+print('Вверх или вниз?')
 
-for i in range(len(yf)):
-    if i < len(yf)-1000:
-        yf[-i-1] = yf[-i-1000]
-    else:
-        yf[-i-1] = 0
+a = input()
 
+if a == 'вверх':
+    for i in range(len(yf)):
+        if i < len(yf)-1000:
+            yf[-i-1] = yf[-i-1000]
+        else:
+            yf[-i-1] = 0
+
+if a == 'вниз':
+    for i in range(len(yf)):
+        if i > len(yf)-500:
+            yf[i] = 0
+        else:
+            yf[i] =  yf[i+499]
 
 
 plt.plot(xf, np.abs(yf))
@@ -43,5 +50,5 @@ plt.show()
 
 norm_new_sig = np.int16(new_sig * (32767 / new_sig.max()))
 
-write("neclean.wav", samplerate, norm_new_sig)
-playsound('neclean.wav')
+write("Modified.wav", samplerate, norm_new_sig)
+playsound('Modified.wav')
