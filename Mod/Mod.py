@@ -7,6 +7,7 @@ from scipy.io.wavfile import write, read
 
 samplerate, data = read('record.wav')
 length = data.shape[0]
+print(length)
 
 plt.plot(data)
 plt.title("Запись")
